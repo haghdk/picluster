@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "budgetapp-backend.fullname" . }}  # Ensure this line exists and generates a name
+  labels:
+    {{- include "budgetapp-backend.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "budgetapp-backend.name" . }}  # Ensure this is not empty
+  template:
+    metadata:
+      labels:
+        app: {{ include "budgetapp-backend.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8080
+
