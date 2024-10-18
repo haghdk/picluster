@@ -1,0 +1,25 @@
+image:
+  repository: postgres
+  tag: "13.4"
+
+pgpool:
+  enabled: true
+  image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
+  admin:
+    username: postgres-pool-username
+    password: postgres-pool-password
+  replication:
+    username: postgres-repl-username
+    password: postgres-repl-password
+
+database:
+  name: budgetapp
+  username: postgres-username
+  password: postgres-password
+
+secret:
+  name: postgres-secrets-budgetapp
+
+namespace: database
+storage:
+  size: 2Gi

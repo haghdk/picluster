@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-budgetapp
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/haghdk/picluster'
+    targetRevision: HEAD
+    path: postgres/charts/postgres
+    helm:
+      valueFiles:
+        - postgres/budgetapp/values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: database
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

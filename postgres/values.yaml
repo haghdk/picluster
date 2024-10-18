@@ -1,0 +1,18 @@
+image:
+  repository: postgres:alpine
+  tag: "3.20"
+pgpool:
+  enabled: true
+  image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
+  admin:
+    username: postgres-pgpool-username
+    password: postgres-pgpool-password
+  replication:
+    username: postgres-repl-username
+    password: postgres-repl-password
+replication:
+  enabled: true
+  user: postgres-repl-username
+  password: postgres-repl-password
+storage:
+  size: 2Gi
