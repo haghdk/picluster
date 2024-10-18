@@ -3,7 +3,7 @@ global:
     auth:
       existingSecret: postgres-secret
       postgresqlUsernameKey: postgresql-username
-      postgresqlPasswordKey: postgressql-password
+      postgresqlPasswordKey: postgresql-password
       postgressqlDatabase: "budgetapp"
   repmgr:
     existingSecret: postgres-secret
