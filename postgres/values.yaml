@@ -1,0 +1,66 @@
+global:
+  postgresql:
+    auth:
+      existingSecret: postgres-secret
+      postgresqlUsernameKey: username
+      postgresqlPasswordKey: password
+  repmgr:
+    existingSecret: postgres-secret
+    repmgrPasswordKey: repmgr-password
+
+pgpool:
+  adminUsername: pg-user
+  adminPassword: pg-password
+  replicationUsername: repmgr-user
+  replicationPasswordKey: repmgr-password
+
+primary:
+  persistence:
+    enabled: true
+    storageClass: "microk8s-hostpath"  # Use the available storage class
+    size: 8Gi  # Adjust based on your node's available disk space
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 250m
+    limits:
+      memory: 1Gi
+      cpu: 1000m
+
+standby:
+  replicaCount: 1
+  persistence:
+    enabled: true
+    storageClass: "microk8s-hostpath"  # Use the same storage class as the primary
+    size: 8Gi
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 250m
+    limits:
+      memory: 1Gi
+      cpu: 1000m
+
+# Optional configurations if you need to expose the PostgreSQL service externally
+service:
+  type: ClusterIP  # Change to LoadBalancer or NodePort if you need external access
+  port: 5432
+
+# High Availability settings
+replication:
+  enabled: true
+  applicationName: database-replication
+  username: repl_user  # Default replication username; ensure it's set properly
+  passwordKey: postgresql-password  # Reuse password from the secret for replication
+  numSynchronousReplicas: 1  # Adjust based on your needs and cluster size
+
+# Additional PostgreSQL settings (optional)
+postgresql:
+  sharedBuffers: "256MB"  # Adjust based on memory resources available
+  maxConnections: 100  # Adjust based on expected load
+
+# Backup settings (if you want to set up backup capabilities later)
+backup:
+  enabled: false  # Set to true if you plan to configure backups
+  storageClass: "microk8s-hostpath"  # Optional: Define storage for backups
+  backupDir: /backups  # Directory inside the pod to store backups
