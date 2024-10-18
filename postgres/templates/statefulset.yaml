@@ -19,9 +19,17 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 5432
-          envFrom:
-            - secretRef:
-                name: {{ .Values.secret.name }}
+          env:  # Use env to pull specific values from the Kubernetes Secret
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}  # Reference to the existing Kubernetes secret
+                  key: {{ .Values.database.usernameSecretKey }}  # Use the key reference from values.yaml
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}
+                  key: {{ .Values.database.passwordSecretKey }}
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
@@ -29,7 +37,8 @@ spec:
     - metadata:
         name: postgres-storage
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes:
+          - ReadWriteOnce
         resources:
           requests:
             storage: {{ .Values.storage.size }}
