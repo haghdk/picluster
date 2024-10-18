@@ -19,4 +19,18 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: budgetapp-backend-config
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret      # Reference the existing postgres-secret
+                  key: postgres-username     # Map DB_USER to the username key
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret      # Reference the existing postgres-secret
+                  key: postgres-password     # Map DB_PASS to the password key
 
