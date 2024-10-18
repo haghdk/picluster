@@ -2,18 +2,18 @@ global:
   postgresql:
     auth:
       existingSecret: postgres-secret
-      postgresqlUsernameKey: postgresql-username
-      postgresqlPasswordKey: postgresql-password
+      postgresqlUsernameKey: postgres-username
+      postgresqlPasswordKey: postgres-password
       postgressqlDatabase: "budgetapp"
   repmgr:
     existingSecret: postgres-secret
     repmgrPasswordKey: repmgr-password
 
 pgpool:
-  adminUsername: pg-user
-  adminPassword: pg-password
-  replicationUsername: repmgr-user
-  replicationPasswordKey: repmgr-password
+  adminUsername: postgres-username
+  adminPassword: postgres-password
+  replicationUsername: replication-username
+  replicationPasswordKey: replication-password
 
 primary:
   persistence:
@@ -49,8 +49,8 @@ service:
 replication:
   enabled: true
   applicationName: database-replication
-  username: repl_user
-  passwordKey: postgresql-password
+  username: replication-user
+  passwordKey: replication-password
   numSynchronousReplicas: 1
 
 postgresql:
