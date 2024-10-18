@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: budgetapp-backend-config
+  namespace: default
+data:
+  DB_HOST: budgetapp-postgres.database.svc.cluster.local
+  DB_NAME: budgetapp
+  DB_PORT: "5432"
+  IP_RESTRICTION_ENABLED: "false"
+  ALLOWED_REGISTER_IP: "192.168.1.1/99"
