@@ -8,10 +8,10 @@ spec:
   source:
     repoURL: 'https://github.com/haghdk/picluster'
     targetRevision: HEAD
-    path: postgres/charts/postgres
+    path: postgres
     helm:
       valueFiles:
-        - postgres/budgetapp/values.yaml
+        - budgetapp/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: database
