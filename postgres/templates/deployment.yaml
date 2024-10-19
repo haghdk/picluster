@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgpool
+  namespace: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgpool
+  template:
+    metadata:
+      labels:
+        app: pgpool
+    spec:
+      containers:
+        - name: pgpool
+          image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
+          ports:
+            - containerPort: 9999  # Default Pgpool port
+          env:
+            - name: PGPOOL_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PGPOOL_ADMIN_USER
+            - name: PGPOOL_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PGPOOL_ADMIN_PASSWORD
