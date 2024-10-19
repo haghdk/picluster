@@ -1,6 +1,6 @@
 image:
-  repository: postgres
-  tag: "13.4"
+  repository: postgres:alpine
+  tag: "3.20"
 
 pgpool:
   enabled: true
