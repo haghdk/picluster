@@ -2,10 +2,6 @@ image:
   repository: postgres
   tag: "13.16"
 
-pgpool:
-  enabled: true
-  image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
-
 database:
   name: budgetapp
   usernameSecretKey: POSTGRES_USER
