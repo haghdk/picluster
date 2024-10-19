@@ -12,7 +12,7 @@ database:
   passwordSecretKey: POSTGRES_PASSWORD
 
 secret:
-  name: postgres-secrets-budgetapp
+  name: postgres-secrets
 
 namespace: database
 storage:
