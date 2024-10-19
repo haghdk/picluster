@@ -5,14 +5,14 @@ pgpool:
   enabled: true
   image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
   admin:
-    username: postgres-pgpool-username
-    password: postgres-pgpool-password
+    usernameSecretKey: PGPOOL_ADMIN_USER
+    passwordSecretKey: PGPOOL_ADMIN_PASSWORD
   replication:
-    username: postgres-repl-username
-    password: postgres-repl-password
+    userSecretKey: REPLICATION_USER
+    passwordSecretKey: REPLICATION_PASSWORD
 replication:
   enabled: true
-  user: postgres-repl-username
-  password: postgres-repl-password
+  userSecretKey: REPLICATION_USER
+  passwordSecretKey: REPLICATION_PASSWORD
 storage:
   size: 2Gi
