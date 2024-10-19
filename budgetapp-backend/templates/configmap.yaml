@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: budgetapp-backend-config
-  namespace: budgetapp-backend
+  namespace: budgetapp
 data:
   DB_HOST: budgetapp-postgres.database.svc.cluster.local
   DB_NAME: budgetapp
