@@ -27,10 +27,10 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret      # Reference the existing postgres-secret
-                  key: postgres-username     # Map DB_USER to the username key
+                  key: POSTGRES_USER     # Map DB_USER to the username key
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret      # Reference the existing postgres-secret
-                  key: postgres-password     # Map DB_PASS to the password key
+                  key: POSTGRES_PASSWORD     # Map DB_PASS to the password key
 
