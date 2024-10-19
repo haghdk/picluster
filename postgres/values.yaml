@@ -1,6 +1,8 @@
 image:
   repository: postgres:alpine
   tag: "3.20"
+secret:
+  name: postgres-secret
 pgpool:
   enabled: true
   image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
