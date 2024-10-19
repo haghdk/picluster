@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pgpool
-          image: "registry.developers.arm.com/pgpool/pgpool:4.2.4"
+          image: "bitnami/pgpool:4.5.4"
           ports:
             - containerPort: 9999  # Default Pgpool port
           env:
