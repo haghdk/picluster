@@ -12,7 +12,7 @@ database:
   passwordSecretKey: POSTGRES_PASSWORD
 
 secret:
-  name: postgres-secrets
+  name: postgres-secret
 
 namespace: database
 storage:
