@@ -1,8 +1,12 @@
 image:
-  repository: postgres:alpine
-  tag: "3.20"
+  repository: postgres
+  tag: "13.16"
 secret:
   name: postgres-secret
+database:
+  name: default
+  usernameSecretKey: POSTGRES_USER
+  passwordSecretKey: POSTGRES_PASSWORD
 pgpool:
   enabled: true
   admin:
