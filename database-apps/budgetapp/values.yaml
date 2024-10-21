@@ -1,15 +1,2 @@
-image:
-  repository: postgres
-  tag: "13.16"
-
 database:
   name: budgetapp
-  usernameSecretKey: POSTGRES_USER
-  passwordSecretKey: POSTGRES_PASSWORD
-
-secret:
-  name: postgres-secret
-
-namespace: database
-storage:
-  size: 2Gi
