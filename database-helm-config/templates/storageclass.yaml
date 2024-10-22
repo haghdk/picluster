@@ -1,6 +1,8 @@
+{{- if not (hasKey .Values "skipExistingStorageClass") }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: fast-storage
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: Immediate
+{{- end }}

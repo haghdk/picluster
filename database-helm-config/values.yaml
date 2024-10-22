@@ -21,3 +21,4 @@ replication:
   passwordSecretKey: REPLICATION_PASSWORD
 storage:
   size: 2Gi
+skipExistingStorageClass: true
