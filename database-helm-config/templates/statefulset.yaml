@@ -21,7 +21,7 @@ spec:
             - containerPort: 5432
           env:  # Use env to pull specific values from the Kubernetes Secret
             - name: POSTGRES_USER
-              valueFrom: {{ .Values.database.username }}
+              value: {{ .Values.database.username }}
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
