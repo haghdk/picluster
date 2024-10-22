@@ -5,7 +5,7 @@ secret:
   name: postgres-secret
 database:
   name: default
-  usernameSecretKey: POSTGRES_USER
+  username: postgres
   passwordSecretKey: POSTGRES_PASSWORD
 pgpool:
   enabled: true
