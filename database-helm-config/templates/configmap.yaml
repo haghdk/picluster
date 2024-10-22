@@ -4,4 +4,4 @@ metadata:
   name: {{ .Values.database.name }}-config
   namespace: {{ .Values.namespace }}
 data:
-  POSTGRES_DATABASE: {{ .Values.database.name }}
+  POSTGRES_DB: {{ .Values.database.name }}
