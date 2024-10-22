@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: "192.168.1.100"  # Replace with your desired domain or IP
+    - host: 10.152.183.117  # Replace with your desired domain or IP
       http:
         paths:
           - path: /
