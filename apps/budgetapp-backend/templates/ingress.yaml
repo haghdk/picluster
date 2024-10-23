@@ -6,14 +6,18 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+    - hosts:
+        - budgetapp.hagh.dk
+      secretName: budgetapp-tls-secret  # Optional, for HTTPS
   rules:
-    - host: budgetapp.hagh.dk  # Replace with your desired domain or IP
+    - host: budgetapp.hagh.dk
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: budgetapp-budgetapp-backend  # Replace with your service name
+                name: budgetapp-budgetapp-backend
                 port:
-                  number: 8081  # Port your service is exposed on
+                  number: 80  # This is mapped to port 8081 in the service
