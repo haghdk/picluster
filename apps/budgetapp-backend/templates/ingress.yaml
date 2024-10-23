@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: budgetapp-ingress
-  namespace: database
+  namespace: budgetapp
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: budgetapp-api-service  # Replace with your service name
+                name: budgetapp-budgetapp-backend  # Replace with your service name
                 port:
-                  number: 3000  # Port your service is exposed on
+                  number: 8081  # Port your service is exposed on
