@@ -16,4 +16,4 @@ spec:
               service:
                 name: budgetapp-api-service  # Replace with your service name
                 port:
-                  number: 8084  # Port your service is exposed on
+                  number: 80  # Port your service is exposed on
