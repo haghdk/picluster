@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: budgetapp-budgetapp-backend
+                name: budgetapp-postgres
                 port:
                   number: 80  # This is mapped to port 8081 in the service
