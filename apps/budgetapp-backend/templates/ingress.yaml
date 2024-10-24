@@ -4,7 +4,14 @@ metadata:
   name: budgetapp-ingress
   namespace: budgetapp
   annotations:
+    cert-manager.io/cluster-issuer: "lets-encrypt"  # Use the correct ClusterIssuer
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location ^~ /.well-known/acme-challenge/ {
+          allow all;
+          default_type "text/plain";
+          root /var/www/acme-challenge;
+      }
 spec:
   tls:
     - hosts:
