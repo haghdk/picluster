@@ -4,19 +4,20 @@ metadata:
   name: budgetapp-ingress
   namespace: budgetapp
   annotations:
-    cert-manager.io/cluster-issuer: "lets-encrypt"  # Use the correct ClusterIssuer
+    cert-manager.io/cluster-issuer: "lets-encrypt"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Enable SSL redirection for all paths
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/server-snippet: |
+    nginx.ingress.kubernetes.io/configuration-snippet: |
       location ^~ /.well-known/acme-challenge/ {
           allow all;
-          default_type "text/plain";
-          root /var/www/acme-challenge;
+          auth_basic off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header Host $host;
+          proxy_pass http://$host$request_uri;
+          add_header Content-Type "text/plain";
+          return 200;
       }
 spec:
-  tls:
-    - hosts:
-        - budgetapp.hagh.dk
-      secretName: budgetapp-tls-secret  # Optional, for HTTPS
   rules:
     - host: budgetapp.hagh.dk
       http:
@@ -25,6 +26,11 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: budgetapp-budgetapp-backend
+                name: budgetapp-service
                 port:
-                  number: 80  # This is mapped to port 8081 in the service
+                  number: 80
+  tls:
+    - hosts:
+        - budgetapp.hagh.dk
+      secretName: budgetapp-tls
+
