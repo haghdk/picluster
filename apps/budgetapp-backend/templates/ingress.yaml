@@ -5,7 +5,7 @@ metadata:
   namespace: budgetapp
   annotations:
     cert-manager.io/cluster-issuer: "lets-encrypt"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Enable SSL redirection for all paths
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Enable SSL redirection for all paths
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/configuration-snippet: |
       location ^~ /.well-known/acme-challenge/ {
