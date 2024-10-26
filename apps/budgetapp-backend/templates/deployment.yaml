@@ -23,7 +23,7 @@ spec:
             - configMapRef:
                 name: budgetapp-backend-config
           env:
-            - name: JWT_TOKEN
+            - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: budgetapp-jwt
