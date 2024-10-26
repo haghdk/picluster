@@ -6,16 +6,12 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "lets-encrypt"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Enable SSL redirection for all paths
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       location ^~ /.well-known/acme-challenge/ {
-          allow all;
-          auth_basic off;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header Host $host;
-          proxy_pass http://$host$request_uri;
-          add_header Content-Type "text/plain";
-          return 200;
+        default_type "text/plain";
+        root /var/www/html;
       }
 spec:
   ingressClassName: nginx
