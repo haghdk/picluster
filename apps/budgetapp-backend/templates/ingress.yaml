@@ -5,7 +5,7 @@ metadata:
   namespace: budgetapp
   annotations:
     acme.cert-manager.io/http01-edit-in-place: 'true'
-    cert-manager.io/cluster-issuer: "letsencrypt"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Enable SSL redirection for all paths
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -22,8 +22,8 @@ spec:
                 name: budgetapp-budgetapp-backend
                 port:
                   number: 80
-  #tls:
-    #- hosts:
-        #- budgetapp.hagh.dk
-      #secretName: budgetapp-tls
+  tls:
+    - hosts:
+        - budgetapp.hagh.dk
+      secretName: budgetapp.hagh.dk.tls
 
