@@ -4,7 +4,7 @@ metadata:
   name: budgetapp-ingress
   namespace: budgetapp
   annotations:
-    acme.cert-manager.io/http01-edit-in-place: 'true'
+    acme.cert-manager.io/http01-edit-in-place: "false"
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Enable SSL redirection for all paths
     #nginx.ingress.kubernetes.io/rewrite-target: /
@@ -15,13 +15,6 @@ spec:
     - host: budgetapp.hagh.dk
       http:
         paths:
-          - path: /.well-known/acme-challenge/*
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: cm-acme-http-solver-75lcb
-                port:
-                  number: 8089
           - path: /
             pathType: Prefix
             backend:
