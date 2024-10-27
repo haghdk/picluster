@@ -22,8 +22,8 @@ spec:
                 name: budgetapp-budgetapp-backend
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - budgetapp.hagh.dk
-      secretName: budgetapp-tls
+  #tls:
+    #- hosts:
+        #- budgetapp.hagh.dk
+      #secretName: budgetapp-tls
 
