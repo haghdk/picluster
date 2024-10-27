@@ -3,14 +3,7 @@ kind: Ingress
 metadata:
   name: budgetapp-ingress
   namespace: budgetapp
-  annotations:
-    acme.cert-manager.io/http01-edit-in-place: "false"
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Enable SSL redirection for all paths
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
-  ingressClassName: nginx
   rules:
     - host: budgetapp.hagh.dk
       http:
@@ -22,8 +15,3 @@ spec:
                 name: budgetapp-budgetapp-backend
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - budgetapp.hagh.dk
-      secretName: budgetapp.hagh.dk.tls
-
