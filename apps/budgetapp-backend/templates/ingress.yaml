@@ -10,6 +10,10 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
+  tls:
+  - hosts:
+     - budgetapp.hagh.dk
+    secretName: budgetapp-hagh-tls
   rules:
     - host: budgetapp.hagh.dk
       http:
