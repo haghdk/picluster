@@ -11,10 +11,6 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
     kubernetes.io/ingress.class: nginx
 spec:
-  tls:
-  - hosts:
-     - budgetapp.hagh.dk
-    secretName: budgetapp-hagh-tls
   rules:
     - host: budgetapp.hagh.dk
       http:
