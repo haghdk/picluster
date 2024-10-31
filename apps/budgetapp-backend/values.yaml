@@ -8,7 +8,7 @@ image:
   repository: ghcr.io/haghdk/budgetapp-backend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.2.21"
+  tag: "1.2.22"
 
 serviceAccount:
   create: true
