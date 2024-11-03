@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "md5generator.fullname" . }}  # Ensure this line exists and generates a name
+  labels:
+    {{- include "md5generator.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "md5generator.name" . }}  # Ensure this is not empty
+  template:
+    metadata:
+      labels:
+        app: {{ include "md5generator.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 8080
+

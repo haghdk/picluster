@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: md5generator-ingress
+  namespace: md5generator
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production-pi"
+    kubernetes.io/ingress.class: public
+spec:
+  rules:
+    - host: md5gen.hagh.dk
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: md5generator
+                port:
+                  number: 80
+  tls:
+    - hosts:
+       - md5gen.hagh.dk
+      secretName: md5gen-tls
